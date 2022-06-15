@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const db = require("../models");
 const bcrypt = require("bcrypt");
-const jwt = require('jwt')
+const jwt = require('jwt-web-token')
 
 const { User } = db;
 
@@ -25,6 +25,7 @@ router.post("/", async (req, res) => {
 
 ___
 router.get('/profile', async (req, res) => {
+    res.json(req.currentUser)
     try {
         // Split the authorization header into [ "Bearer", "TOKEN" ]:
         const [authenticationMethod, token] = req.headers.authorization.split(' ')
